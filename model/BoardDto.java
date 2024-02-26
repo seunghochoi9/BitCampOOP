@@ -3,13 +3,13 @@ package model;
 public class BoardDto {
     private String title;
     private String content;
+    private String writer;
 
     public BoardDto(String title, String content, String writer) {
         this.title = title;
         this.content = content;
         this.writer = writer;
     }
-
     @Override
     public String toString() {
         return "BoardDto{" +
@@ -18,8 +18,6 @@ public class BoardDto {
                 "글쓴이=" + writer + '\'' +
                 '}';
     }
-
-    private  String writer;
 
     public String getTitle() {
         return title;
