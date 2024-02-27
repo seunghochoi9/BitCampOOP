@@ -1,7 +1,8 @@
 package model;
 
 public class UserDto {
-    private String userName;
+    private int id;
+    private String username;
     private String password;
     private String verifyPassword;
     private String name;
@@ -28,9 +29,9 @@ public class UserDto {
 
     private double weight;
 
-    public UserDto(String userName, String password, String verifyPassword, String name, String socialSecurityNumber,
+    public UserDto(String username, String password, String verifyPassword, String name, String socialSecurityNumber,
                    String phoneNumber, String address, double height, double weight) {
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.verifyPassword = verifyPassword;
         this.name = name;
@@ -46,7 +47,7 @@ public class UserDto {
     @Override
     public String toString() {
         return "UserDto{" +
-                "userName='" + userName + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", verifyPassword='" + verifyPassword + '\'' +
                 ", name='" + name + '\'' +

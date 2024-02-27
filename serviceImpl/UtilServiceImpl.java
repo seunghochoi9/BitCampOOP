@@ -20,6 +20,23 @@ public class UtilServiceImpl implements UtilService {
         return Math.round((start + Math.random() * gap) * 10) / 10.0;
     }
 
+    public String createRandomUsername(){
+        String username = "";
+        for(;
+            username.length() < 5;
+            username += String.valueOf((char)('a' + this.createRandomInteger(0, 26)))
+        );
+        return username;
+//        내 코딩
+//        String[] usernamePool = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+//        String username = "";
+//        for(int i=0;i<5;i++){
+//            String a = usernamePool[createRandomInteger(0, 26)];
+//            username = username + a;
+//        }
+    }
+
+
     public String createRandomName() {
         String[] names = {"이정재", "마동석", "송강호", "윤여정", "황정민",
                 "정우성", "이병헌", "현 빈", "유해진", "손석구", "전도연",

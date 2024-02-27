@@ -3,7 +3,7 @@ package builder;
 import model.UserDto;
 
 public class UserBuilder {
-    private String userName;
+    private String username;
     private String password;
     private String verifyPassword;
     private String name;
@@ -13,8 +13,8 @@ public class UserBuilder {
     private double height;
     private double weight;
 
-    public UserBuilder userName(String userName) {
-        this.userName = userName;
+    public UserBuilder username(String username) {
+        this.username = username;
         return this;
     }
 
@@ -59,6 +59,6 @@ public class UserBuilder {
     }
 
     public UserDto build() {
-        return new UserDto(userName, password, verifyPassword, name, socialSecurityNumber, phoneNumber, address, height, weight);
+        return new UserDto(username, password, verifyPassword, name, socialSecurityNumber, phoneNumber, address, height, weight);
     }
 }
