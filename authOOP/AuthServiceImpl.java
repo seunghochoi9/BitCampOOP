@@ -1,32 +1,21 @@
-package serviceImpl;
+package authOOP;
 
 import builder.UserBuilder;
 import model.UserDto;
-import repository.UserRepository;
-import service.UserService;
 import service.UtilService;
+import serviceImpl.UtilServiceImpl;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserServiceImpl implements UserService {
-    private static UserService instance = new UserServiceImpl();
-
-//    private UserServiceImpl(){}
-
-    public static UserService getInstance() {
-        return instance;
-    }
-
-    UserRepository userRepository;
+public class AuthServiceImpl implements AuthService {
+    private static AuthService instance = new AuthServiceImpl();
     Map<String, UserDto> users;
-
-    public UserServiceImpl(){
-        userRepository = new UserRepository();
-        users = new HashMap<>();
+    private AuthServiceImpl(){
+        this.users = new HashMap<>();
     }
-
+    public static AuthService getInstance(){return instance;}
     @Override
     public String join(UserDto user) {
         users.put(user.getUsername(), user);
@@ -38,11 +27,11 @@ public class UserServiceImpl implements UserService {
         String msg = "";
         UserDto userInMap = users.get(user.getUsername());
         if(userInMap == null){
-            msg = "ID 틀림";
-        }else {
+            msg = "아이디 틀림";
+        }else{
             if(userInMap.getPassword().equals(user.getPassword())){
                 msg = "로그인 성공";
-            }else {
+            }else{
                 msg = "비밀번호 틀림";
             }
         }
@@ -50,17 +39,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findUserById() {
+    public UserDto findUserById(String username) {
         return null;
     }
 
     @Override
-    public String updatePassword() {
+    public String updatePassword(UserDto user) {
         return null;
     }
 
     @Override
-    public String deleteUser() {
+    public String deleteUser(String username) {
         return null;
     }
 
@@ -70,35 +59,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> findUsersByName() {
+    public List<UserDto> findUsersByName(String name) {
         return null;
     }
 
     @Override
-    public List<UserDto> findUsersByJob() {
+    public List<UserDto> findUsersByJob(String job) {
         return null;
     }
 
     @Override
-    public String addUsers() {
-        Map<String, UserDto> map = new HashMap<>();
-        UtilService util = UtilServiceImpl.getInstance();
-        for(int i=0;i<5;i++) {
-            String usernameKey = util.createRandomUsername();
-            map.put(usernameKey,
-                    new UserBuilder()
-                            .username(usernameKey)
-                            .password("1")
-                            .verifyPassword("1")
-                            .name(util.createRandomName())
-                            .build());
-        }
-        users = map;
-        return users.size() + "더미 값 추가";
-    }
-
-    @Override
-    public String count() {
+    public String countUsers() {
         return users.size()+"";
     }
 
@@ -107,4 +78,23 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    @Override
+    public String addUsers() {
+        Map<String, UserDto> map = new HashMap<>();
+        UtilService util = UtilServiceImpl.getInstance();
+
+        for(int i=0; i<5; i++){
+            String username = util.createRandomUsername();
+            map.put(username,
+                    new UserBuilder()
+                            .username(username)
+                            .password("1")
+                            .verifyPassword("1")
+                            .name(util.createRandomName())
+                            .build());
+        }
+        users = map;
+        return users.size()+"개 더미값 추가";
+
+    }
 }

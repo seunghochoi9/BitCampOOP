@@ -1,16 +1,16 @@
-package view;
+package seunghoTest;
 
-import controller.UserController;
+import seunghoTest.UserControllerTest;
 import model.UserDto;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class UserView {
+public class UserViewTest {
     public static void main(Scanner sc) {
-        UserController userController = new UserController();
-        String msg = userController.addUsers();
-        System.out.println("userController.addUsers() 결과: " + msg);
+        UserControllerTest uct = new UserControllerTest();
+        uct.addUser();
+        System.out.println("임의랜덤 가입자: "+uct.addUser());
         while (true) {
             System.out.println("[관리자메뉴] 0-종료\n " +
                     "1-회원가입\n " +
@@ -28,12 +28,11 @@ public class UserView {
                     return;
                 case "1":
                     System.out.println("1-회원가입");
-                    msg = userController.join(sc);
-                    System.out.println("회원가입 결과: "+msg);
+                    System.out.println("회원가입 결과: "+uct.join(sc));
                     break;
                 case "2":
                     System.out.println("2-로그인");
-                    System.out.println(userController.login(sc));
+                    System.out.println(uct.login(sc));
                     break;
                 case "3":
                     System.out.println("3-ID검색");
@@ -46,9 +45,9 @@ public class UserView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-                    Map<String, UserDto> users = userController.getUserMap();
-                    users.forEach((k, v) -> {
-                        System.out.printf("ID: %s, 회원정보: %s",k,v);
+                    Map<String, UserDto> userMap = uct.getUsersMap();
+                    userMap.forEach((k, v) -> {
+                        System.out.printf("ID: %s / 회원정보: %s",k,v);
                     });
                     break;
                 case "7":
@@ -59,8 +58,7 @@ public class UserView {
                     break;
                 case "9":
                     System.out.println("9-회원수");
-                    String numberOfUsers = userController.count();
-                    System.out.println("회원수: " + numberOfUsers);
+                    System.out.println("회원수: "+uct.userCount());
                     break;
 
             }
