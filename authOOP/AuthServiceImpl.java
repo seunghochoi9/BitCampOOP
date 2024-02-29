@@ -5,6 +5,7 @@ import model.UserDto;
 import service.UtilService;
 import serviceImpl.UtilServiceImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,22 +41,24 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserDto findUserById(String username) {
-        return null;
+        return users.get(username);
     }
 
     @Override
     public String updatePassword(UserDto user) {
-        return null;
+        users.get(user.getUsername()).setPassword(user.getPassword());
+        return "비번 변경 성공";
     }
 
     @Override
     public String deleteUser(String username) {
-        return null;
+        users.remove(username);
+        return "회원삭제 완료";
     }
 
     @Override
     public List<UserDto> getUserList() {
-        return null;
+        return new ArrayList<>(users.values());
     }
 
     @Override

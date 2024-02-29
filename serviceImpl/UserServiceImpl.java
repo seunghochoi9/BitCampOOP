@@ -6,6 +6,7 @@ import repository.UserRepository;
 import service.UserService;
 import service.UtilService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,32 +51,33 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findUserById() {
+    public UserDto findUserById(String username) {
+        return users.get(username);
+    }
+
+    @Override
+    public String updatePassword(UserDto user) {
         return null;
     }
 
     @Override
-    public String updatePassword() {
-        return null;
-    }
-
-    @Override
-    public String deleteUser() {
-        return null;
+    public String deleteUser(String username) {
+        users.remove(username);
+        return "계정삭제 완료";
     }
 
     @Override
     public List<UserDto> getUserList() {
+        return new ArrayList<>(users.values());
+    }
+
+    @Override
+    public List<UserDto> findUsersByName(String name) {
         return null;
     }
 
     @Override
-    public List<UserDto> findUsersByName() {
-        return null;
-    }
-
-    @Override
-    public List<UserDto> findUsersByJob() {
+    public List<UserDto> findUsersByJob(String job) {
         return null;
     }
 

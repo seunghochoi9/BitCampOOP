@@ -10,6 +10,7 @@ public class UserBuilder {
     private String socialSecurityNumber;
     private String phoneNumber;
     private String address;
+    private String job;
     private double height;
     private double weight;
 
@@ -58,7 +59,12 @@ public class UserBuilder {
         return this;
     }
 
+    public UserBuilder job(String job) {
+        this.job = job;
+        return this;
+    }
     public UserDto build() {
-        return new UserDto(username, password, verifyPassword, name, socialSecurityNumber, phoneNumber, address, height, weight);
+        return new UserDto(username, password, verifyPassword, name, socialSecurityNumber,
+                phoneNumber, address, job, height, weight);
     }
 }

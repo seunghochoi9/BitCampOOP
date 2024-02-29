@@ -8,14 +8,16 @@ import serviceImpl.UtilServiceImpl;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserServiceImplTest implements UserServiceTest {
-    private static UserServiceTest instance = new UserServiceImplTest();
-    public static UserServiceTest getInstance() {
+public class TestUserServiceImpl implements TestUserService {
+    private static TestUserService instance = new TestUserServiceImpl();
+
+    public static TestUserService getInstance() {
         return instance;
     }
+
     Map<String, UserDto> users;
 
-    public UserServiceImplTest() {
+    public TestUserServiceImpl() {
         this.users = new HashMap<>();
     }
 
@@ -23,14 +25,14 @@ public class UserServiceImplTest implements UserServiceTest {
     public String addUsers() {
         Map<String, UserDto> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
-        for(int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             String usernameKey = util.createRandomUsername();
             map.put(usernameKey, new UserBuilder()
-                            .username(usernameKey)
-                            .password("1")
-                            .verifyPassword("1")
-                            .name(util.createRandomName())
-                            .build());
+                    .username(usernameKey)
+                    .password("1")
+                    .verifyPassword("1")
+                    .name(util.createRandomName())
+                    .build());
         }
         users = map;
         return users.size() + "명 (for문 5번)";
@@ -38,13 +40,13 @@ public class UserServiceImplTest implements UserServiceTest {
 
     @Override
     public String userCount() {
-        return users.size()+"명";
+        return users.size() + "명";
     }
 
     @Override
     public String join(UserDto user) {
         users.put(user.getUsername(), user);
-        return  "회원가입 성공";
+        return "회원가입 성공";
     }
 
     @Override
@@ -56,16 +58,26 @@ public class UserServiceImplTest implements UserServiceTest {
     public String login(UserDto user) {
         String msg = "";
         UserDto userInMap = users.get(user.getUsername());
-        if(userInMap == null){
+        if (userInMap == null) {
             msg = "아이디 틀림";
         } else {
-            if(userInMap.getPassword().equals(user.getPassword())){
+            if (userInMap.getPassword().equals(user.getPassword())) {
                 msg = "로그인 성공";
-            }else {
+            } else {
                 msg = "비밀번호 틀림";
             }
         }
         return msg;
+    }
+
+    @Override
+    public UserDto findById(String username) {
+        return users.get(username);
+    }
+
+    @Override
+    public String changePassword(String password) {
+        return null;
     }
 
 }

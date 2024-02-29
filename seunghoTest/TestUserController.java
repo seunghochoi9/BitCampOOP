@@ -2,30 +2,28 @@ package seunghoTest;
 
 import builder.UserBuilder;
 import model.UserDto;
-import seunghoTest.UserServiceTest;
-import seunghoTest.UserServiceImplTest;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class UserControllerTest {
-    UserServiceTest ust;
+public class TestUserController {
+    TestUserService us;
 
-    public UserControllerTest() {
-        this.ust = new UserServiceImplTest();
+    public TestUserController() {
+        this.us = new TestUserServiceImpl();
     }
 
     public String addUser() {
-        return ust.addUsers();
+        return us.addUsers();
     }
 
     public String userCount() {
-        return ust.userCount();
+        return us.userCount();
     }
 
     public String join(Scanner sc) {
         System.out.println("ID?, 비번?, 비번확인?, 이름?, 주민번호?, 전화번호?, 주소?");
-        return ust.join(new UserBuilder()
+        return us.join(new UserBuilder()
                 .username(sc.next())
                 .password(sc.next())
                 .verifyPassword(sc.next())
@@ -34,11 +32,28 @@ public class UserControllerTest {
     }
 
     public Map<String, UserDto> getUsersMap() {
-        return ust.getUsersMap();
+        return us.getUsersMap();
     }
 
     public String login(Scanner sc) {
         System.out.println("로그인할 ID, 비밀번호 입력: ");
-        return ust.login(new UserBuilder().username(sc.next()).password(sc.next()).build());
+        return us.login(new UserBuilder().username(sc.next()).password(sc.next()).build());
+    }
+
+    public UserDto findById(Scanner sc) {
+        return us.findById(sc.next());
+    }
+
+    public String changePassword(Scanner sc) {
+        return us.changePassword(sc.next());
+    }
+
+    public boolean del() {
+    }
+
+    public boolean findByName() {
+    }
+
+    public boolean findByJob() {
     }
 }

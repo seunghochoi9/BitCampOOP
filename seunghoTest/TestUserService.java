@@ -4,12 +4,8 @@ import model.UserDto;
 
 import java.util.Map;
 
-public interface UserServiceTest {
-
-
-
+public interface TestUserService {
     String addUsers();
-
 
     String userCount();
 
@@ -18,4 +14,8 @@ public interface UserServiceTest {
     Map<String, UserDto> getUsersMap();
 
     String login(UserDto user);
+
+    UserDto findById(String username);
+
+    String changePassword(String password);
 }

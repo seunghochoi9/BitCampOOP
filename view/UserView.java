@@ -37,12 +37,15 @@ public class UserView {
                     break;
                 case "3":
                     System.out.println("3-ID검색");
+                    System.out.println(userController.findUserById(sc));
                     break;
                 case "4":
                     System.out.println("4-비번변경");
+                    System.out.println(userController.updatePassword(sc));
                     break;
                 case "5":
                     System.out.println("5-탈퇴");
+                    System.out.println(userController.deleteUser(sc));
                     break;
                 case "6":
                     System.out.println("6-회원목록");
@@ -53,9 +56,15 @@ public class UserView {
                     break;
                 case "7":
                     System.out.println("7-이름검색");
+                    userController.findUsersByName().forEach((i)->{
+                        System.out.println(i);
+                    });
                     break;
                 case "8":
                     System.out.println("8-직업검색");
+                    userController.findUsersByJob().forEach((i)->{
+                        System.out.println(i);
+                    });
                     break;
                 case "9":
                     System.out.println("9-회원수");

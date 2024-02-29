@@ -1,14 +1,13 @@
 package seunghoTest;
 
-import seunghoTest.UserControllerTest;
 import model.UserDto;
 
 import java.util.Map;
 import java.util.Scanner;
 
-public class UserViewTest {
+public class TestUserView {
     public static void main(Scanner sc) {
-        UserControllerTest uct = new UserControllerTest();
+        TestUserController uct = new TestUserController();
         uct.addUser();
         System.out.println("임의랜덤 가입자: "+uct.addUser());
         while (true) {
@@ -36,12 +35,15 @@ public class UserViewTest {
                     break;
                 case "3":
                     System.out.println("3-ID검색");
+                    System.out.println(uct.findById(sc));
                     break;
                 case "4":
                     System.out.println("4-비번변경");
+                    System.out.println(uct.changePassword(sc));
                     break;
                 case "5":
                     System.out.println("5-탈퇴");
+                    System.out.println(uct.del());
                     break;
                 case "6":
                     System.out.println("6-회원목록");
@@ -52,9 +54,11 @@ public class UserViewTest {
                     break;
                 case "7":
                     System.out.println("7-이름검색");
+                    System.out.println(uct.findByName());
                     break;
                 case "8":
                     System.out.println("8-직업검색");
+                    System.out.println(uct.findByJob());
                     break;
                 case "9":
                     System.out.println("9-회원수");
