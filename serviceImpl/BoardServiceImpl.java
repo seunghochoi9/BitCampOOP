@@ -1,6 +1,5 @@
 package serviceImpl;
 
-import builder.BoardBuilder;
 import service.BoardService;
 
 public class BoardServiceImpl implements BoardService {

@@ -1,6 +1,5 @@
 import authOOP.AuthView;
 import view.UserView;
-import seunghoTest.TestUserView;
 import view.*;
 
 import java.util.Scanner;
@@ -36,7 +35,6 @@ public class Main {
                     break;
 
                 case "98":
-                    TestUserView.main(sc);
                     break;
                 case "99":
                     AuthView.main(sc);

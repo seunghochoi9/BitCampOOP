@@ -1,9 +1,7 @@
 package view;
 
-import builder.SubjectBuilder;
-import builder.UserBuilder;
-import model.SubjectDto;
-import model.UserDto;
+import model.Subject;
+import model.User;
 import service.GradeService;
 import service.UtilService;
 import serviceImpl.GradeServiceImpl;
@@ -15,9 +13,9 @@ public class GradeView {
     public static void main(Scanner sc) {
         System.out.println("이름, 국어/영어/수학 점수?");
         UtilService util = UtilServiceImpl.getInstance();
-        UserDto student = new UserBuilder().name(sc.next()).build();
+        User student = User.builder().name(sc.next()).build();
         GradeService grade = GradeServiceImpl.getInstance();
-        SubjectDto subjects = new SubjectBuilder()
+        Subject subjects = Subject.builder()
                 .korean(util.createRandomInteger(0, 100))
                 .english(util.createRandomInteger(0, 100))
                 .math(util.createRandomInteger(0, 100))

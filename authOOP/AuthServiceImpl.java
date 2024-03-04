@@ -1,7 +1,6 @@
 package authOOP;
 
-import builder.UserBuilder;
-import model.UserDto;
+import model.User;
 import service.UtilService;
 import serviceImpl.UtilServiceImpl;
 
@@ -12,21 +11,25 @@ import java.util.Map;
 
 public class AuthServiceImpl implements AuthService {
     private static AuthService instance = new AuthServiceImpl();
-    Map<String, UserDto> users;
+    Map<String, User> users;
+    List<User> userList;
+
     private AuthServiceImpl(){
         this.users = new HashMap<>();
+        this.userList = new ArrayList<>();
     }
-    public static AuthService getInstance(){return instance;}
+    public static AuthService getInstance(){ return instance; }
+
     @Override
-    public String join(UserDto user) {
+    public String join(User user) {
         users.put(user.getUsername(), user);
         return "회원가입 성공";
     }
 
     @Override
-    public String login(UserDto user) {
+    public String login(User user) {
         String msg = "";
-        UserDto userInMap = users.get(user.getUsername());
+        User userInMap = users.get(user.getUsername());
         if(userInMap == null){
             msg = "아이디 틀림";
         }else{
@@ -40,12 +43,12 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public UserDto findUserById(String username) {
+    public User findUserById(String username) {
         return users.get(username);
     }
 
     @Override
-    public String updatePassword(UserDto user) {
+    public String updatePassword(User user) {
         users.get(user.getUsername()).setPassword(user.getPassword());
         return "비번 변경 성공";
     }
@@ -57,17 +60,17 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public List<UserDto> getUserList() {
+    public List<User> getUserList() {
         return new ArrayList<>(users.values());
     }
 
     @Override
-    public List<UserDto> findUsersByName(String name) {
+    public List<User> findUsersByName(String name) {
         return null;
     }
 
     @Override
-    public List<UserDto> findUsersByJob(String job) {
+    public List<User> findUsersByJob(String job) {
         return null;
     }
 
@@ -77,19 +80,19 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public Map<String, UserDto> getUserMap() {
+    public Map<String, User> getUserMap() {
         return users;
     }
 
     @Override
     public String addUsers() {
-        Map<String, UserDto> map = new HashMap<>();
+        Map<String, User> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
 
         for(int i=0; i<5; i++){
             String username = util.createRandomUsername();
             map.put(username,
-                    new UserBuilder()
+                    User.builder()
                             .username(username)
                             .password("1")
                             .verifyPassword("1")

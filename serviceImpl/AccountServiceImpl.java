@@ -1,6 +1,6 @@
 package serviceImpl;
 
-import model.AccountDto;
+import model.Account;
 import service.AccountService;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class AccountServiceImpl implements AccountService {
 
     private static AccountService instance = new AccountServiceImpl();
 
-    List<AccountDto> accounts;
+    List<Account> accounts;
     private AccountServiceImpl(){
         this.accounts = new ArrayList<>();
     }
@@ -19,27 +19,28 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public String createAccount(AccountDto account) {
+    public String createAccount(Account account) {
+        accounts.add(null);
         return "계좌생성 완료";
     }
 
     @Override
-    public String deposit(AccountDto account) {
+    public String deposit(Account account) {
         return "입금 완료";
     }
 
     @Override
-    public String withdraw(AccountDto account) {
+    public String withdraw(Account account) {
         return "인출 완료";
     }
 
     @Override
-    public List<AccountDto> getAccounts() {
+    public List<Account> getAccounts() {
         return null;
     }
 
     @Override
-    public String getBalance(AccountDto account) {
+    public String getBalance(Account account) {
         return null;
     }
 

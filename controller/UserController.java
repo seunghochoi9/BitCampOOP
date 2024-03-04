@@ -1,13 +1,9 @@
 package controller;
 
-import builder.UserBuilder;
-import model.UserDto;
+import model.User;
 import service.UserService;
-import service.UtilService;
 import serviceImpl.UserServiceImpl;
-import serviceImpl.UtilServiceImpl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -21,7 +17,7 @@ public class UserController {
 
     public String join(Scanner sc) {
         System.out.println("ID?, 비번?, 비번확인?, 이름?, 주민번호?, 전화번호?, 주소?");
-        return userService.join(new UserBuilder()
+        return userService.join(User.builder()
                 .username(sc.next())
                 .password(sc.next())
                 .verifyPassword(sc.next())
@@ -33,18 +29,18 @@ public class UserController {
     }
     public String login(Scanner sc) {
         System.out.println("ID, 비밀번호 입력: ");
-        return userService.login(new UserBuilder()
+        return userService.login(User.builder()
                 .username(sc.next())
                 .password(sc.next())
                 .build());
     }
 
-    public UserDto findUserById(Scanner sc) {
+    public User findUserById(Scanner sc) {
         return userService.findUserById(sc.next());
     }
 
     public String updatePassword(Scanner sc) {
-        return userService.updatePassword(new UserBuilder()
+        return userService.updatePassword(User.builder()
                 .username(sc.next()).password(sc.next()).build());
     }
 
@@ -54,19 +50,18 @@ public class UserController {
     }
 
 
-    public Map<String, UserDto> getUserMap() {
+    public Map<String, User> getUserMap() {
         System.out.println("전체 목록 출력");
         return userService.getUserMap();
     }
 
-
-    public List<UserDto> findUsersByName() {
-        return null;
+    public List<User> findUsersByName(Scanner sc) {
+        return userService.findUsersByName(sc.next());
     }
 
 
-    public List<UserDto> findUsersByJob() {
-        return null;
+    public List<User> findUsersByJob(Scanner sc) {
+        return userService.findUsersByJob(sc.next());
     }
 
     public String addUsers() {
@@ -74,6 +69,6 @@ public class UserController {
     }
 
     public String count() {
-       return userService.count();
+        return userService.count();
     }
 }

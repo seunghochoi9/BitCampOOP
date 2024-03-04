@@ -1,7 +1,6 @@
 package serviceImpl;
 
-import builder.UserBuilder;
-import model.UserDto;
+import model.User;
 import repository.UserRepository;
 import service.UserService;
 import service.UtilService;
@@ -14,36 +13,34 @@ import java.util.Map;
 public class UserServiceImpl implements UserService {
     private static UserService instance = new UserServiceImpl();
 
-//    private UserServiceImpl(){}
-
     public static UserService getInstance() {
         return instance;
     }
 
     UserRepository userRepository;
-    Map<String, UserDto> users;
+    Map<String, User> users;
 
-    public UserServiceImpl(){
+    public UserServiceImpl() {
         userRepository = new UserRepository();
         users = new HashMap<>();
     }
 
     @Override
-    public String join(UserDto user) {
+    public String join(User user) {
         users.put(user.getUsername(), user);
         return "회원가입 성공";
     }
 
     @Override
-    public String login(UserDto user) {
+    public String login(User user) {
         String msg = "";
-        UserDto userInMap = users.get(user.getUsername());
-        if(userInMap == null){
+        User userInMap = users.get(user.getUsername());
+        if (userInMap == null) {
             msg = "ID 틀림";
-        }else {
-            if(userInMap.getPassword().equals(user.getPassword())){
+        } else {
+            if (userInMap.getPassword().equals(user.getPassword())) {
                 msg = "로그인 성공";
-            }else {
+            } else {
                 msg = "비밀번호 틀림";
             }
         }
@@ -51,13 +48,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findUserById(String username) {
+    public User findUserById(String username) {
         return users.get(username);
     }
 
     @Override
-    public String updatePassword(UserDto user) {
-        return null;
+    public String updatePassword(User user) {
+        users.get(user.getUsername()).setPassword(user.getPassword());
+        return "비밀번호 수정완료";
     }
 
     @Override
@@ -67,28 +65,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDto> getUserList() {
+    public List<User> getUserList() {
         return new ArrayList<>(users.values());
     }
 
     @Override
-    public List<UserDto> findUsersByName(String name) {
-        return null;
+    public List<User> findUsersByName(String name) {
+        return new ArrayList<>(users.values());
     }
 
     @Override
-    public List<UserDto> findUsersByJob(String job) {
-        return null;
+    public List<User> findUsersByJob(String job) {
+        return new ArrayList<>(users.values());
     }
 
     @Override
     public String addUsers() {
-        Map<String, UserDto> map = new HashMap<>();
+        Map<String, User> map = new HashMap<>();
         UtilService util = UtilServiceImpl.getInstance();
-        for(int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             String usernameKey = util.createRandomUsername();
             map.put(usernameKey,
-                    new UserBuilder()
+                    User.builder()
                             .username(usernameKey)
                             .password("1")
                             .verifyPassword("1")
@@ -101,11 +99,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String count() {
-        return users.size()+"";
+        return users.size() + "";
     }
 
     @Override
-    public Map<String, UserDto> getUserMap() {
+    public Map<String, User> getUserMap() {
         return users;
     }
 

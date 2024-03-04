@@ -1,7 +1,7 @@
 package view;
 
 import controller.UserController;
-import model.UserDto;
+import model.User;
 
 import java.util.Map;
 import java.util.Scanner;
@@ -49,20 +49,20 @@ public class UserView {
                     break;
                 case "6":
                     System.out.println("6-회원목록");
-                    Map<String, UserDto> users = userController.getUserMap();
+                    Map<String, User> users = userController.getUserMap();
                     users.forEach((k, v) -> {
                         System.out.printf("ID: %s, 회원정보: %s",k,v);
                     });
                     break;
                 case "7":
                     System.out.println("7-이름검색");
-                    userController.findUsersByName().forEach((i)->{
+                    userController.findUsersByName(sc).forEach((i)->{
                         System.out.println(i);
                     });
                     break;
                 case "8":
                     System.out.println("8-직업검색");
-                    userController.findUsersByJob().forEach((i)->{
+                    userController.findUsersByJob(sc).forEach((i)->{
                         System.out.println(i);
                     });
                     break;
