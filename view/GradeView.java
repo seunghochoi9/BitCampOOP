@@ -20,8 +20,8 @@ public class GradeView {
                 .english(util.createRandomInteger(0, 100))
                 .math(util.createRandomInteger(0, 100))
                 .build();
-        int totalScore = grade.getTotalScore(subjects);
-        double average = grade.findAverage(totalScore);
+        String totalScore = grade.getTotalScore(subjects);
+        String average = grade.findAverage(totalScore);
         System.out.println(totalScore);
         System.out.println(average);
 //        System.out.printf("===============성적표============\n" +

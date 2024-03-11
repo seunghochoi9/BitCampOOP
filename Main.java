@@ -1,4 +1,3 @@
-import authOOP.AuthView;
 import view.UserView;
 import view.*;
 
@@ -35,9 +34,6 @@ public class Main {
                     break;
 
                 case "98":
-                    break;
-                case "99":
-                    AuthView.main(sc);
                     break;
 
                 default:

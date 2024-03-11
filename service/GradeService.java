@@ -3,6 +3,6 @@ package service;
 import model.Subject;
 
 public interface GradeService {
-    int getTotalScore(Subject total);
-    double findAverage(int total);
+    String getTotalScore(Subject total);
+    String findAverage(String total);
 }
